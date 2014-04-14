@@ -1,26 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><%= (@title.titleize + " :: " || "" ) + "Wigi - The Git-backed Wiki" %></title>
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
-    <title><%= @title || "Wigi - The Git-backed Wiki" %></title>
+        <%= stylesheet_link_tag "application" %>
+        <%= stylesheet_link_tag "foundation-icons" %>
+        <link rel="stylesheet" href="http://lab.lepture.com/editor/editor.css" />
+        <%= csrf_meta_tags %>
+    </head>
+    <body>
+        <div class="meny">
+            <h2 class="meny_title">Pages</h2>
+            <ul>
+                <li><a href="/" class="meny_link">Home</a></li>
+                <%
+                    p = @pages["pages"]
+                    p.sort_by{|k,v| v["title"] }
 
-    <%= stylesheet_link_tag "application" %>
-    <%= csrf_meta_tags %>
-  </head>
+                    p.each do |page| %>
 
-  <body>
-    <nav class="top-bar" data-topbar>
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="/">Wigi</a></h1>
-        </li>
-      </ul>
-    </nav>
-    <div class="row">
-      <%= yield %>
-    </div>
-    <%= javascript_include_tag "application" %>
-  </body>
+                    <% if page[0] != "main" %>
+                        <li><%= link_to page[0].titleize, "/pages/#{page[0]}/", class: "meny_link" %></li>
+                    <% end %>
+                <% end %>
+            </ul>
+                <div class="innerbox">
+                    <a href="#" class="button alert"><i class="fi-heart size-16 invert"></i> made with all the love in the world <i class="fi-heart size-16 invert"></i></a>
+                </div>
+        </div>
+
+        <div class="meny-arrow"></div>
+
+        <div class="contents">
+            <nav class="top-bar" data-topbar>
+              <div class="box">
+                <ul class="title-area">
+                    <li class="name">
+                        <h1><a href="/" class="page_title">Wigi</a></h1>
+                    </li>
+                </ul>
+                <section class="top-bar-section">
+                    <!-- Right Nav Section -->
+                    <ul class="right">
+                        <li><a href="/"><i class="fi-home size-24"></i></a></li>
+                        <% if @is_page %>
+                        <li><%= link_to("/pages/#{@url}/edit", class: "li_info") do %><i class="fi-page-edit size-24 invert"></i><% end %></li>
+                        <% if @can_delete %>
+                        <li><%= link_to("/pages/#{@url}/", method: :delete, data: { confirm: 'Are you sure?' }, :class => "li_alert") do %><i class="fi-page-delete size-24 invert"></i><% end %></li>
+                        <% end %>
+                        <% end %>
+                        <li><%= link_to(new_page_path, :class => "li_succ") do %><i class="fi-plus size-24 invert"></i><% end %></li>
+                    </ul>
+                </section>
+              </div>
+            </nav>
+            <div class="row"> <%= yield %> </div>
+
+            <div id="sticky_footer" class="text-center">
+                <p>Copyright &copy; 2014 Emily Ozols + contributors - <a href="http://opensource.org/licenses/MIT">MIT</a> Licensed</p>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="http://lab.lepture.com/editor/editor.js"></script>
+        <%= javascript_include_tag "application" %>
+        <%= javascript_include_tag "meny" %>
+    </body>
 </html>

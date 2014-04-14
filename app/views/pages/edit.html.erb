@@ -4,15 +4,17 @@
     <fieldset>
       <legend><%= @title %></legend>
       <label>Edit: <small>Use markdown</small>
-        <%= text_area_tag("page", @contents, size: "24x6") %>
+        <%= text_area_tag("page", @contents) %>
       </label>
       <div class="row">
         <div class="large-6 columns">
           <%= submit_tag("Submit", {:class => "button"}) %>
-        </div>
+      </div>
+      <% if @can_delete %>
         <div class="large-4 columns">
           <%= link_to "Delete", "/pages/#{@url}", method: :delete, data: { confirm: 'Are you sure?' }, :class => "button alert" %>
         </div>
+      <% end %>
       </div>
     </fieldset>
   <% end %>

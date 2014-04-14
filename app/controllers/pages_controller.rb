@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_page, :only => [:show, :edit, :update, :destroy]
+  before_action :set_page, :only => [:index, :show, :edit, :update, :destroy]
 
   # GET /pages
   def index
@@ -8,10 +8,12 @@ class PagesController < ApplicationController
 
   # GET /pages/1
   def show
+    @pages = all_pages
   end
 
   # GET /pages/new
   def new
+    @pages = all_pages
   end
 
   # POST /pages
@@ -23,6 +25,7 @@ class PagesController < ApplicationController
 
   # GET /pages/1/edit
   def edit
+    @pages = all_pages
   end
 
   # PATCH/PUT /pages/1
@@ -40,10 +43,12 @@ class PagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      page = find_page(params[:id])
+      page = find_page(params[:id] || "main")
       @url = page[0]
       @title = page[1]
       @contents = find_file(page[2])
+      @is_page = true
+      @can_delete = !(page[1] == "main")
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

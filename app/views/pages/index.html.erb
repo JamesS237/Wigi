@@ -1,20 +1,4 @@
-<h1>Listing pages</h1>
+<h1><%= @title.titleize %></h1>
+<hr>
+<%= markdown(@contents) %>
 
-<% @pages["pages"].each do |page| %>
-  <fieldset class="large-5 large-centered columns">
-    <legend><%= link_to page[1]["title"], "/pages/#{page[0]}" %></legend>
-    <div class="row">
-      <div class="large-4 columns">
-        <%= link_to "Show", "/pages/#{page[0]}", :class => "button" %>
-      </div>
-      <div class="large-2 columns">
-        <%= link_to "Edit", edit_page_path(page[0]), :class => "button" %>
-      </div>
-      <div class="large-4 columns">
-        <%= link_to "Delete", "/pages/#{page[0]}", method: :delete, data: { confirm: 'Are you sure?' }, :class => "button alert" %>
-      </div>
-    </div>
-  </fieldset>
-<% end %>
-
-<%= link_to 'New Page', new_page_path %>
