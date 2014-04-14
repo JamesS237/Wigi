@@ -12,3 +12,161 @@
  *
  *= require foundation_and_overrides
  */
+
+body {
+    font-family: 'Lato', Helvetica, sans-serif;
+}
+
+.size-72 { font-size: 72px; }
+.size-48 { font-size: 48px; }
+.size-32 { font-size: 48px; }
+.size-24 { font-size: 24px; }
+.size-16 { font-size: 16px; }
+.size-8 { font-size: 8px; }
+
+
+
+a.black {
+  color: #000;
+  &:visited {
+    color: #000000 !important;
+  }
+}
+
+.top-bar-section ul li {
+    float: none;
+}
+
+.top-bar {
+    height: 49px;
+    line-height: 49px;
+}
+
+.li_info {
+    background-color: #008cba !important;
+}
+.li_succ {
+    background-color: #43ac6a !important;
+}
+.li_alert {
+    background-color: #f04124 !important;
+}
+
+.sidebar {
+    width : 220px;
+    margin-left: -220px;
+    float: left;
+}
+.main {
+    padding-rigth: 220px;
+}
+
+.meny {
+	display: none;
+	padding: 20px;
+	overflow: auto;
+	background: #333333;
+	color: #eee;
+
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+	.meny ul {
+		margin-top: 10px;
+	}
+		.meny ul li {
+			display: inline-block;
+			width: 200px;
+			list-style: none;
+			font-size: 20px;
+			padding: 3px 10px;
+		}
+			.meny ul li:before {
+				content: '-';
+				margin-right: 5px;
+				color: rgba( 255, 255, 255, 0.2 );
+			}
+
+/**
+ * Hint graphic that appears while menu is inactive
+ */
+.meny-arrow {
+	position: absolute;
+	z-index: 10;
+
+	border: 10px solid transparent;
+
+	-webkit-transition: opacity 0.4s ease 0.4s;
+	   -moz-transition: opacity 0.4s ease 0.4s;
+	    -ms-transition: opacity 0.4s ease 0.4s;
+	     -o-transition: opacity 0.4s ease 0.4s;
+	        transition: opacity 0.4s ease 0.4s;
+}
+	.meny-left .meny-arrow {
+		left: 14px;
+		top: 50%;
+		margin-top: -16px;
+		border-left: 16px solid #333;
+	}
+	.meny-right .meny-arrow {
+		right: 14px;
+		top: 50%;
+		margin-top: -16px;
+		border-right: 16px solid #333;
+	}
+	.meny-top .meny-arrow {
+		left: 50%;
+		top: 14px;
+		margin-left: -16px;
+		border-top: 16px solid #333;
+	}
+	.meny-bottom .meny-arrow {
+		left: 50%;
+		bottom: 14px;
+		margin-left: -16px;
+		border-bottom: 16px solid #333;
+	}
+	.meny-active .meny-arrow {
+		opacity: 0;
+
+		-webkit-transition: opacity 0.2s ease;
+		   -moz-transition: opacity 0.2s ease;
+		    -ms-transition: opacity 0.2s ease;
+		     -o-transition: opacity 0.2s ease;
+		        transition: opacity 0.2s ease;
+	}
+
+.meny_link {
+    color: #c2575b;
+    font-size: 24px;
+}
+.meny_link:hover {
+    color: #f76f76;
+    font-size: 24px;
+}
+
+.meny_title {
+    color: #ffffff !important;
+}
+
+.page_title {
+    font-size: 36px;
+}
+
+#sticky_footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+}
+
+.box {
+    position: relative;
+}
+
+.innerbox {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
 //= require_tree .
 function replaceEmojiWithImages(root) {
   var REGIONAL_INDICATOR_A = parseInt('1f1e6', 16), REGIONAL_INDICATOR_Z = parseInt('1f1ff', 16), IMAGE_HOST = 'assets.github.com', IMAGE_PATH = '/images/icons/emoji/unicode/', IMAGE_EXT = '.png';
@@ -128,12 +127,28 @@ function replaceEmojiWithImages(root) {
     emojiReplace(getLegitTextNodes(root));
   }
 }
-
-$(function () {
-  $(document).foundation();
-});
-
 $(document).ready(function () {
+  $(document).foundation();
+
   var el = document.body;
   replaceEmojiWithImages(el);
+  var editor = new Editor();
+  editor.render();
 });
+
+  var meny = Meny.create({
+    menuElement: document.querySelector('.meny'),
+    contentsElement: document.querySelector('.contents'),
+    position: 'right',
+    height: 200,
+    width: 260,
+    angle: 20,
+    threshold: 40,
+    overlap: 60,
+    transitionDuration: '1.0s',
+    transitionEasing: 'ease-out',
+    gradient: 'rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.65) 100%)',
+    mouse: true,
+    touch: true
+  });
+
